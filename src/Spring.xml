@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+    <bean id="traingle" class="springdemo.Triangle">
+<!--    <property name="type" value="Euilateral"/>-->
+<!--    <constructor-arg value="Euilateral"/>
+        <constructor-arg type="int" value="12"/>
+-->
+    <constructor-arg index="0" value="Euilateral"/>
+     <constructor-arg index="1" type="int" value="12"/>
+
+</bean>
+
+<!--refrence in Spring-->
+
+<bean id="newTraingle" class="springdemo.TriangleData">
+    <property name="PointA" ref="point1"/>
+    <property name="PointB" ref="point2"/>
+    <property name="PointC" ref="point3"/>
+</bean>
+
+<!-- Collection in Spring.xml Type conversion is handle in this declaration-->
+
+<bean id="CollectionTraingle" class="springdemo.TriangleData">
+    <property name="list">
+        <list>
+            <ref bean="point1"/>
+            <ref bean="point2"/>
+            <ref bean="point3"/>
+        </list>
+    </property>
+
+</bean>
+
+
+<!--Bean inheritance-->
+<bean id="ParentTriangle" class="springdemo.TriangleData">
+    <property name="pointA" ref="point1"/>
+</bean>
+
+<bean id="Triangle1" class="springdemo.TriangleData" parent="ParentTriangle"> 
+    <property name="pointB" ref="point2"/>
+    <property name="pointC" ref="point3"/>
+</bean>
+
+<bean id="Triangle2" class="springdemo.TriangleData" parent="ParentTriangle">
+    <property name="pointC" ref="point3"/>
+</bean>
+<!--inheritance end-->
+
+<bean id="point1" class="springdemo.Pointer">
+    <property name="x" value="0"/>
+    <property name="y" value="10"/>
+</bean>
+
+<bean id="point2" class="springdemo.Pointer">
+    <property name="x" value="10"/>
+    <property name="y" value="10"/>
+</bean>
+
+<bean id="point3" class="springdemo.Pointer">
+    <property name="x" value="-10"/>
+    <property name="y" value="-10"/>
+</bean>
+
+
+<!--Wiring in Beans ByName-->
+
+<bean id="Student" class="springdemo.WiringTest" autowire="byName">
+    
+</bean>
+
+<bean id="student1" class="springdemo.wiringStudentClass">
+    <property name="Name" value="Santosh"/>
+    <property name="Address" value="Bangalore"/>
+    <property name="Contact" value="10"/>
+</bean>
+
+<bean id="student2" class="springdemo.wiringStudentClass">
+    <property name="Name" value="Avinash"/>
+    <property name="Address" value="Mumbai"/>
+    <property name="Contact" value="11"/>
+</bean>
+
+
+</beans>
