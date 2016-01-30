@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
-<beans>
-    <bean id="traingle" class="springdemo.Triangle">
+<beans default-init-method="myInt" default-destroy-method="cleanUp">
+   
+    <bean id="traingle" class="springdemo.Triangle" >
 <!--    <property name="type" value="Euilateral"/>-->
 <!--    <constructor-arg value="Euilateral"/>
         <constructor-arg type="int" value="12"/>
@@ -49,8 +50,8 @@
 <!--inheritance end-->
 
 <bean id="point1" class="springdemo.Pointer">
-    <property name="x" value="0"/>
-    <property name="y" value="10"/>
+    <property name="x" value="${point1.x}"/>
+    <property name="y" value="${point1.y}"/>
 </bean>
 
 <bean id="point2" class="springdemo.Pointer">
@@ -80,6 +81,21 @@
     <property name="Name" value="Avinash"/>
     <property name="Address" value="Mumbai"/>
     <property name="Contact" value="11"/>
+</bean>
+
+<bean id="circle" class="Annotations.Shape">
+<!--    <property name="center" ref="Point"/>-->
+</bean>    
+
+<bean id="Point" class="Annotations.Point">
+    <property name="X" value="10"/>
+    <property name="Y" value="10"/>
+</bean>
+
+<bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
+<bean class="springdemo.BeanFactoryProecessClass"/>
+<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+<property name="locations" value="springDemo.properties"/>
 </bean>
 
 
